@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignIn extends AppCompatActivity {
 
-    // Acitivty items
+    // Activity items
     private EditText mEmail;
     private EditText mPassword;
     private Button mButton;
@@ -56,7 +56,7 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
-    // Signs the user into firebase authentication servers
+    // Signs the user into Firebase authentication servers
     private void signIn() {
         String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString();
