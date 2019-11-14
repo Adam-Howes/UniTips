@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "668509900867",
+    "firebase_url": "https://unitips-f290c.firebaseio.com",
+    "project_id": "unitips-f290c",
+    "storage_bucket": "unitips-f290c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668509900867:android:cb896866fbd82745",
+        "android_client_info": {
+          "package_name": "com.example.unitips"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668509900867-4lld2q2hl1pl62evl5u621qqecv0tihv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.unitips",
+            "certificate_hash": "1fc528af9bb211c727253f3bf05aebc195085381"
+          }
+        },
+        {
+          "client_id": "668509900867-nbe7cqhaseul38a7sqojakh5p02mia1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXOiWkvfRGe3WTdIdeAAY6rB4bdcz7wWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668509900867-nbe7cqhaseul38a7sqojakh5p02mia1t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

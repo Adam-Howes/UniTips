@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UniTips</string>
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="tab_text_1">Study</string>
+    <string name="tab_text_2">Money</string>
+    <string name="tab_text_3">Food</string>
+    <string name="tab_text_4">Living</string>
+    <string name="tab_text_5">Saved</string>
+</resources>
