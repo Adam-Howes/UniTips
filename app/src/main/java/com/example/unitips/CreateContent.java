@@ -24,6 +24,8 @@ import com.example.unitips.HomePage.HomePage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
@@ -70,6 +72,7 @@ public class CreateContent extends AppCompatActivity {
     private int imageCount = 0;
 
     // Firebase
+    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("image_posts");
     private FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
 
@@ -366,10 +369,12 @@ public class CreateContent extends AppCompatActivity {
                     mProgressBar.setVisibility(View.GONE);
                 }
             });
+            // TODO: Move Vote count so it is it's own collection
+            mFireStore.collection("posts")
+                    .document(String.valueOf(postID))
+                    .update("voteCount", voteCount);
 
-            mFireStore.collection("posts").document(String.valueOf(postID)).update("voteCount", voteCount);
             mProgressBar.setVisibility(View.GONE);
-
         }
     }
 
