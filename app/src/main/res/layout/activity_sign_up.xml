@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUp">
+    tools:context=".Activities.SignUp">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -69,7 +69,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="#ff7043"
+        android:background="@drawable/button"
         android:text="Sign Up"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,26 +1,26 @@
-package com.example.unitips;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.unitips.Activities;
 
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
-import com.example.unitips.HomePage.HomePage;
+import com.example.unitips.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -36,13 +36,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class CreateContent extends AppCompatActivity {
+public class CreateContent extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     // Activity Items
     private EditText mTitle;
     private EditText mDescription;
-    private RadioGroup mRadioGroup;
-    private RadioButton mRadioButton;
     private Button mAddImage;
     private Button mStartUpload;
     private ProgressBar mProgressBar;
@@ -76,8 +74,11 @@ public class CreateContent extends AppCompatActivity {
     private StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("image_posts");
     private FirebaseFirestore mFireStore = FirebaseFirestore.getInstance();
 
-    // Upload Sucess Checkers
-    boolean textUploadSucess = false;
+    // Upload Success Checkers
+    boolean textUploadSuccess = false;
+
+    // Category
+    private String category = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,10 +87,11 @@ public class CreateContent extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setTitle("New Post");
 
+
         mProgressBar = findViewById(R.id.view_content_progress_bar);
         mTitle = findViewById(R.id.new_content_title_edit_text);
         mDescription = findViewById(R.id.new_content_description_edit_text);
-        mRadioGroup = findViewById(R.id.new_content_radio_group);
+        Spinner mSpinner = findViewById(R.id.new_content_category_spinner);
         mAddImage = findViewById(R.id.new_content_add_image_button);
         mStartUpload = findViewById(R.id.new_content_start_upload_button);
 
@@ -121,9 +123,14 @@ public class CreateContent extends AppCompatActivity {
             }
         });
         mProgressBar.setVisibility(View.GONE);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(adapter);
+        mSpinner.setOnItemSelectedListener(this);
     }
 
-    private void startUpload(){
+    private void startUpload() {
         uploadInfo();
         uploadFile();
 
@@ -144,36 +151,42 @@ public class CreateContent extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            if (imageCount == 0) {
-                mImageUri0 = data.getData();
-                Glide.with(this).load(mImageUri0).into(mImageView0);
-                mImageView0.setVisibility(View.VISIBLE);
-                description0.setVisibility(View.VISIBLE);
-            }
-            if (imageCount == 1) {
-                mImageUri1 = data.getData();
-                Glide.with(this).load(mImageUri1).into(mImageView1);
-                mImageView1.setVisibility(View.VISIBLE);
-                description1.setVisibility(View.VISIBLE);
-            }
-            if (imageCount == 2) {
-                mImageUri2 = data.getData();
-                Glide.with(this).load(mImageUri2).into(mImageView2);
-                mImageView2.setVisibility(View.VISIBLE);
-                description2.setVisibility(View.VISIBLE);
-            }
-            if (imageCount == 3) {
-                mImageUri3 = data.getData();
-                Glide.with(this).load(mImageUri3).into(mImageView3);
-                mImageView3.setVisibility(View.VISIBLE);
-                description3.setVisibility(View.VISIBLE);
-            }
-            if (imageCount == 4) {
-                mImageUri4 = data.getData();
-                Glide.with(this).load(mImageUri4).into(mImageView4);
-                mImageView4.setVisibility(View.VISIBLE);
-                description4.setVisibility(View.VISIBLE);
-                mAddImage.setVisibility(View.GONE);
+
+            switch (imageCount) {
+                case 0:
+                    mImageUri0 = data.getData();
+                    Glide.with(this).load(mImageUri0).into(mImageView0);
+                    mImageView0.setVisibility(View.VISIBLE);
+                    description0.setVisibility(View.VISIBLE);
+                    break;
+
+                case 1:
+                    mImageUri1 = data.getData();
+                    Glide.with(this).load(mImageUri1).into(mImageView1);
+                    mImageView1.setVisibility(View.VISIBLE);
+                    description1.setVisibility(View.VISIBLE);
+                    break;
+
+                case 2:
+                    mImageUri2 = data.getData();
+                    Glide.with(this).load(mImageUri2).into(mImageView2);
+                    mImageView2.setVisibility(View.VISIBLE);
+                    description2.setVisibility(View.VISIBLE);
+                    break;
+
+                case 3:
+                    mImageUri3 = data.getData();
+                    Glide.with(this).load(mImageUri3).into(mImageView3);
+                    mImageView3.setVisibility(View.VISIBLE);
+                    description3.setVisibility(View.VISIBLE);
+
+                case 4:
+                    mImageUri4 = data.getData();
+                    Glide.with(this).load(mImageUri4).into(mImageView4);
+                    mImageView4.setVisibility(View.VISIBLE);
+                    description4.setVisibility(View.VISIBLE);
+                    mAddImage.setVisibility(View.GONE);
+                    break;
             }
             imageCount++;
         }
@@ -329,6 +342,7 @@ public class CreateContent extends AppCompatActivity {
         }
     }
 
+    // TODO: Figure out a better way to do this
     // Uploads the users info to the FireStore database
     private void uploadInfo() {
         String title = mTitle.getText().toString().trim();
@@ -341,16 +355,13 @@ public class CreateContent extends AppCompatActivity {
         } else if (description.isEmpty()) {
             mProgressBar.setVisibility(View.GONE);
             Toast.makeText(CreateContent.this, "Enter Description", Toast.LENGTH_SHORT).show();
-        } else if (mRadioButton == null) {
-            mProgressBar.setVisibility(View.GONE);
-            Toast.makeText(CreateContent.this, "Enter Category", Toast.LENGTH_SHORT).show();
         } else {
             postID = System.currentTimeMillis();
 
             Map<String, String> stringMap = new HashMap<>();
             stringMap.put("title", title);
             stringMap.put("description", description);
-            stringMap.put("category", mRadioButton.getText().toString());
+            stringMap.put("category", category);
             stringMap.put("description0", description0.getText().toString());
             stringMap.put("description1", description1.getText().toString());
             stringMap.put("description2", description2.getText().toString());
@@ -361,7 +372,7 @@ public class CreateContent extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            textUploadSucess = true;
+                            textUploadSuccess = true;
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -413,8 +424,15 @@ public class CreateContent extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-    public void checkButton(View view) {
-        int radioId = mRadioGroup.getCheckedRadioButtonId();
-        mRadioButton = findViewById(radioId);
+    // Gets the category to be sent to the database
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        category = text;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

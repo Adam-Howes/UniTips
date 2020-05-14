@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
-    tools:context=".SignUp2">
+    tools:context=".Activities.SignUp2">
 
     <ImageView
         android:id="@+id/sign_up_2_image_view"
@@ -23,12 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="32dp"
-        android:background="#ff7043"
+        android:background="@drawable/button"
         android:text="Choose Your Profile Picture"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -62,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="#ff7043"
+        android:background="@drawable/button"
         android:text="Finish Sign Up"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,6 +1,4 @@
-package com.example.unitips;
-
-import android.media.Image;
+package com.example.unitips.Activities;
 
 public class ImageUpload {
     private String mImageID;

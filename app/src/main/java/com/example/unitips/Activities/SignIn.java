@@ -1,19 +1,21 @@
-package com.example.unitips;
+package com.example.unitips.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.unitips.HomePage.HomePage;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.unitips.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,11 +26,12 @@ public class SignIn extends AppCompatActivity {
     // Activity items
     private EditText mEmail;
     private EditText mPassword;
-    private Button mButton;
-    private ProgressBar mProgressbar;
+    public ProgressBar mProgressbar;
+    private Button mSignInButton;
 
     // Firebase
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private Button testButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,36 +46,52 @@ public class SignIn extends AppCompatActivity {
             startActivity(new Intent(this, HomePage.class));
         }
 
+        // findViewById
         mProgressbar = findViewById(R.id.sign_in_progress_bar);
         mProgressbar.setVisibility(View.GONE);
         mEmail = findViewById(R.id.sign_in_email_text);
         mPassword = findViewById(R.id.sign_in_password_text);
-        mButton = findViewById(R.id.sign_in_button);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mSignInButton = findViewById(R.id.sign_in_button);
+
+        // setOnClickListener
+        mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn();
+                String email = mEmail.getText().toString().trim();
+                String password = mPassword.getText().toString();
+
+                signIn(email, password);
             }
         });
     }
 
-    // Signs the user into Firebase authentication servers
-    private void signIn() {
-        String email = mEmail.getText().toString().trim();
-        String password = mPassword.getText().toString();
+    public boolean checkInternet() {
 
-        if (TextUtils.isEmpty(email)) {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+
+    // TODO: Add timeout for slow internet/disconnection
+    private void signIn(String email, String password) {
+
+        if (email == null) {
             Toast.makeText(SignIn.this, "Enter Email", Toast.LENGTH_LONG).show();
-        }
-        if (TextUtils.isEmpty(password)) {
+        } else if (password == null) {
             Toast.makeText(SignIn.this, "Enter Password", Toast.LENGTH_LONG).show();
+        } else if (checkInternet() == false) {
+            Toast.makeText(SignIn.this, "Please connect to the internet and try again", Toast.LENGTH_LONG).show();
         } else {
-            mProgressbar.setVisibility(View.VISIBLE);
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            Task<AuthResult> task = mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+
                     if (!task.isSuccessful()) {
                         mProgressbar.setVisibility(View.GONE);
+
+                        // TODO: Make better error messages
                         Toast.makeText(SignIn.this, "Sign In Failed", Toast.LENGTH_LONG).show();
                     } else {
                         mProgressbar.setVisibility(View.GONE);
@@ -83,11 +102,10 @@ public class SignIn extends AppCompatActivity {
         }
     }
 
-    // Text View that takes user to SignUp activity
+    // To SignUp activity
     public void toSignUpTextView(View view) {
         startActivity(new Intent(SignIn.this, SignUp.class));
         overridePendingTransition(android.R.anim.slide_out_right, android.R.anim.slide_in_left);
-
     }
 
     // Minimises app
@@ -98,4 +116,3 @@ public class SignIn extends AppCompatActivity {
         startActivity(startMain);
     }
 }
-

@@ -6,4 +6,19 @@
     <string name="tab_text_3">Food</string>
     <string name="tab_text_4">Living</string>
     <string name="tab_text_5">Saved</string>
+
+    <string-array name="categories">
+        <item>Study</item>
+        <item>Food</item>
+        <item>Living</item>
+        <item>Money</item>
+    </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="user_profile_picture">Your current profile picture</string>
+    <string name="user_email">Getting Email</string>
+    <string name="user_name">Getting Username</string>
+
 </resources>

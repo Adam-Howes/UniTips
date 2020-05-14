@@ -1,4 +1,4 @@
-package com.example.unitips.HomePage;
+package com.example.unitips.Constructors;
 
 public class ItemData {
     private String title;

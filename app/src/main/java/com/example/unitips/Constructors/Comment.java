@@ -1,4 +1,4 @@
-package com.example.unitips.ViewContent;
+package com.example.unitips.Constructors;
 
 public class Comment {
     private String commentDescription;

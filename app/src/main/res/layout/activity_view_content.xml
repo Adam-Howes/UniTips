@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ViewContent.ViewContent">
+    tools:context=".Activities.ViewContent">
 
     <ScrollView
         android:id="@+id/view_content_scroll_view"
@@ -168,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="32dp"
-                android:background="#FF7043"
+                android:background="@drawable/button"
                 android:text="Post Comment"
                 android:textColor="#ffffff"
                 android:visibility="gone" />

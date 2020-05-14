@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
-    tools:context=".ViewProfile">
+    tools:context=".Activities.ViewProfile">
 
     <TextView
         android:id="@+id/view_profile_text_view_username"

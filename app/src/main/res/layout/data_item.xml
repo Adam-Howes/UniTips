@@ -9,44 +9,50 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:background="#ffffff">
 
+        <ImageView
+            android:id="@+id/data_item_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff7043"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/text_overlay_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:background="#90000000" />
+
         <TextView
+            android:layout_width="match_parent"
             android:id="@+id/text_view_title"
-            android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
-            android:layout_toStartOf="@id/text_view_category"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:maxLines="1"
             android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingTop="8dp"
+            android:textColor="#ffffff"
             android:text="Title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="18dp"
+            android:visibility="visible"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/text_view_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="8dp"
-            android:paddingTop="8dp"
-            android:text="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <TextView
-            android:id="@+id/text_view_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_title"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="8dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingBottom="8dp"
-            android:text="Description" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
