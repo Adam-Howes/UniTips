@@ -1,8 +1,4 @@
-package com.example.unitips;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.unitips.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +8,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.unitips.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -119,7 +120,7 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-    // Text View that takes user to SignIn activity
+    // Text View that takes user to Account activity
     public void toSignInTextView(View view) {
         startActivity(new Intent(SignUp.this, SignIn.class));
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);

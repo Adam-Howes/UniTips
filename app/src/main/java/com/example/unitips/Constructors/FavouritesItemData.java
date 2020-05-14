@@ -1,4 +1,4 @@
-package com.example.unitips.Favourites;
+package com.example.unitips.Constructors;
 
 public class FavouritesItemData {
     private String title;

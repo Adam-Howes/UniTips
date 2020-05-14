@@ -1,14 +1,15 @@
-package com.example.unitips.Favourites;
+package com.example.unitips.Activities;
+
+import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-
+import com.example.unitips.Adapters.FavouritesItemDataAdapter;
+import com.example.unitips.Constructors.FavouritesItemData;
 import com.example.unitips.R;
-import com.example.unitips.ViewContent.ViewContent;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

@@ -1,4 +1,4 @@
-package com.example.unitips.HomePage;
+package com.example.unitips.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.unitips.Constructors.ItemData;
 import com.example.unitips.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -23,8 +24,6 @@ public class ItemDataAdapter extends FirestoreRecyclerAdapter<ItemData, ItemData
     @Override
     protected void onBindViewHolder(@NonNull ItemDataHolder itemDataHolder, int i, @NonNull ItemData itemData) {
         itemDataHolder.textViewTitle.setText(itemData.getTitle());
-        itemDataHolder.textViewDescription.setText(itemData.getDescription());
-        itemDataHolder.textViewCategory.setText(String.valueOf(itemData.getCategory()));
     }
 
     @NonNull
@@ -36,14 +35,10 @@ public class ItemDataAdapter extends FirestoreRecyclerAdapter<ItemData, ItemData
 
     class ItemDataHolder extends RecyclerView.ViewHolder {
         TextView textViewTitle;
-        TextView textViewDescription;
-        TextView textViewCategory;
 
         public ItemDataHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.text_view_title);
-            textViewDescription = itemView.findViewById(R.id.text_view_description);
-            textViewCategory = itemView.findViewById(R.id.text_view_category);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_nav_settings"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_messages"
+            android:icon="@drawable/ic_nav_message"
+            android:title="Messages" />
+        <item
+            android:id="@+id/nav_favourites"
+            android:icon="@drawable/ic_nav_favourite"
+            android:title="Favourites" />
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@drawable/ic_nav_sign_out"
+            android:title="Sign Out" />
+    </group>
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="Communication">
+
+            <menu>
+                <item
+                    android:id="@+id/nav_legal"
+                    android:title="Legal Stuff" />
+                <item
+                    android:id="@+id/nav_report_problem"
+                    android:title="Report A Problem" />
+                <item
+                    android:id="@+id/nav_rate_app"
+                    android:title="Rate App" />
+            </menu>
+        </item>
+    </group>
+</menu>

@@ -12,24 +12,27 @@
         android:roundIcon="@mipmap/unitipsbuttonlogo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.UserSettings"></activity>
         <activity
-            android:name=".Favourites.Favourites"
-            android:parentActivityName=".HomePage.HomePage"></activity>
+            android:name=".Activities.Favourites"
+            android:parentActivityName=".Activities.HomePage" />
         <activity
-            android:name=".Report"
-            android:parentActivityName=".HomePage.HomePage" />
-        <activity android:name=".ViewProfile" />
-        <activity android:name=".HomePage.HomePage" />
+            android:name=".Activities.Report"
+            android:parentActivityName=".Activities.HomePage" />
+        <activity android:name=".Activities.ViewProfile" />
         <activity
-            android:name=".CreateContent"
-            android:parentActivityName=".HomePage.HomePage" />
+            android:name=".Activities.HomePage"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewContent.ViewContent"
-            android:parentActivityName=".HomePage.HomePage" />
-        <activity android:name=".SignUp2" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".SignIn" />
-        <activity android:name=".SplashScreen">
+            android:name=".Activities.CreateContent"
+            android:parentActivityName=".Activities.HomePage" />
+        <activity
+            android:name=".Activities.ViewContent"
+            android:parentActivityName=".Activities.HomePage" />
+        <activity android:name=".Activities.SignUp2" />
+        <activity android:name=".Activities.SignUp" />
+        <activity android:name=".Activities.SignIn" />
+        <activity android:name=".Activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
